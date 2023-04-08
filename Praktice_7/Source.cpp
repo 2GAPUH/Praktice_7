@@ -54,6 +54,9 @@ int main(int argc, char* argv[])
 	}
 
 	Init(&win, &ren, &win_surface, WINDOW_HEIGHT, WINDOW_WIDTH);
+	SDL_SetRenderDrawColor(ren, 255, 255, 255, 255);
+	SDL_RenderClear(ren);
+	SDL_SetRenderDrawBlendMode(ren, SDL_BLENDMODE_BLEND);
 
 	switch (exType)
 	{
@@ -76,6 +79,7 @@ int main(int argc, char* argv[])
 		{
 			if (!Volkov(win, ren))
 				break;
+			WindowDelay();
 		}
 		break;
 	case 4:
