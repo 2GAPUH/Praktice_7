@@ -3,6 +3,21 @@
 #include "common_parameters.h"
 #include <malloc.h>
 
+void arrayInit(SDL_Rect* rectArray)
+{
+	rectArray[0].x = 20;
+	rectArray[0].y = 20;
+	rectArray[0].w = 20;
+	rectArray[0].h = 20;
+	rectArray[1].x = 20;
+	rectArray[1].y = 20;
+	rectArray[1].w = 20;
+	rectArray[1].h = 20;
+	
+}
+
+
+
 bool Volkov(SDL_Window* win, SDL_Renderer* ren)
 {
 	static SDL_Event ev;
@@ -14,15 +29,7 @@ bool Volkov(SDL_Window* win, SDL_Renderer* ren)
 
 	if (check)
 	{
-		rectArray[0].x = 20;
-		rectArray[0].y = 20;
-		rectArray[0].w = 20;
-		rectArray[0].h = 20;
-
-		rectArray[1].x = 20;
-		rectArray[1].y = 20;
-		rectArray[1].w = 20;
-		rectArray[1].h = 20;
+		arrayInit(rectArray);
 		check = 0;
 	}
 
