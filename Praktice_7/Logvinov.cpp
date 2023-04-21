@@ -49,7 +49,20 @@ bool Logvinov(SDL_Window* win, SDL_Renderer* ren)
 			switch (ev.type)
 			{
 			case SDL_QUIT:
-				isRunning = false;
+				while (true) {
+					SDL_SetRenderDrawColor(ren, 0, 0, 0, 255);
+					SDL_PollEvent(&ev);
+					SDL_RenderClear(ren);
+					SDL_RenderPresent(ren);
+					if (ev.type == SDL_QUIT || ev.key.keysym.scancode == SDL_SCANCODE_ESCAPE)
+					{
+						isRunning = false;
+						SDL_Quit();
+						return 0;
+					}
+					else if (ev.type == SDL_KEYDOWN)
+						break;
+				}
 				break;
 
 			case SDL_WINDOWEVENT:
@@ -64,7 +77,22 @@ bool Logvinov(SDL_Window* win, SDL_Renderer* ren)
 				switch (ev.key.keysym.scancode)
 				{
 				case SDL_SCANCODE_ESCAPE:
-					isRunning = false;
+					while (true)
+					{
+						SDL_PollEvent(&ev);
+						SDL_SetRenderDrawColor(ren, 0, 0, 0, 255);
+						SDL_RenderClear(ren);
+						SDL_RenderPresent(ren);
+						if (ev.type == SDL_QUIT || (ev.key.keysym.scancode == SDL_SCANCODE_ESCAPE && ev.type == SDL_KEYDOWN))
+						{
+							isRunning = false;
+							SDL_Quit();
+							return 0;
+						}
+						else if (ev.type == SDL_KEYDOWN)
+							break;
+					}
+
 					break;
 				case SDL_SCANCODE_EQUALS:
 					isNextColor = true;
@@ -86,6 +114,7 @@ bool Logvinov(SDL_Window* win, SDL_Renderer* ren)
 				case SDL_SCANCODE_LEFT:
 					isLeftPressed = true;
 					break;
+
 				}
 				break;
 
